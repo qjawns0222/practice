@@ -4,21 +4,13 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import store from "./redux/store";
-import { add, subn, add2, subn2 } from "./redux/action";
-const sub = store.subscribe(() => {
-  console.log(store.getState());
-});
-store.dispatch(add(5.1));
-store.dispatch(add2(5.1));
-store.dispatch(add(5.2));
-store.dispatch(add2(5.2));
-store.dispatch(add(5.3));
-store.dispatch(add2(5.3));
-store.dispatch(subn(5.1));
-store.dispatch(subn2(5.1));
+import { Provider } from "react-redux";
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );
