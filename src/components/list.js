@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 
 function List({ state }) {
   console.log(state.add1);
-  return <div>{state.add1}</div>;
+  return <div>{JSON.stringify(state.add1)}</div>;
 }
 const Listo = connect(
   (state) => {
