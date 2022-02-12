@@ -4,13 +4,12 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import store from "./redux/store";
-import { Provider } from "react-redux";
-
+import ReduxContext from "./context/ReduxContext";
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
+    <ReduxContext.Provider value={store}>
       <App />
-    </Provider>
+    </ReduxContext.Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );

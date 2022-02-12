@@ -1,23 +1,10 @@
-import { connect } from "react-redux";
-
-import { add } from "../redux/action";
-function Add({ inque }) {
+import addstore from "../hook/addstore";
+import { add } from "../redux/modules/add1";
+export default function Add() {
+  const dispatch = addstore();
   return <button onClick={click}>추가</button>;
 
   function click() {
-    inque();
+    dispatch(add(5));
   }
 }
-const Addto = connect(
-  (state) => {
-    return {};
-  },
-  (dispatch) => {
-    return {
-      inque: () => {
-        dispatch(add(5));
-      },
-    };
-  }
-)(Add);
-export default Addto;

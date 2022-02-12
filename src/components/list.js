@@ -1,15 +1,13 @@
-import { connect } from "react-redux";
+import Liststore from "../hook/liststore";
 
-function List({ state }) {
-  console.log(state.add1);
-  return <div>{JSON.stringify(state.add1)}</div>;
+export default function List() {
+  const state = Liststore();
+
+  return (
+    <div>
+      {state.add1.map((p) => (
+        <li>{p}</li>
+      ))}
+    </div>
+  );
 }
-const Listo = connect(
-  (state) => {
-    return { state };
-  },
-  (dispatch) => {
-    return {};
-  }
-)(List);
-export default Listo;
