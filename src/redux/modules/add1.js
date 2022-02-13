@@ -1,26 +1,20 @@
-const ADD = "ADD";
-const SUB = "SUB";
+import { handleActions } from "redux-actions";
+import createAction from "redux-actions/lib/createAction";
 
-export function add(index) {
-  return {
-    type: ADD,
-    index,
-  };
-}
-export function subn(index) {
-  return {
-    type: SUB,
-    index,
-  };
-}
+export const ADD = createAction("ADD", (text) => text);
+export const SUB = createAction("SUB", (text) => text);
+const reducer = handleActions(
+  {
+    ADD: (previousState, action) => {
+      previousState.push(action.payload);
+      return previousState;
+    },
+    SUB: (previousState, action) => {
+      return previousState.filter((p) => p !== action.payload);
+    },
+  },
+  []
+);
+console.log(ADD(10));
 
-export default function reducer(previousState = [], action) {
-  if (action.type === ADD) {
-    previousState.push(action.index);
-    return previousState;
-  }
-  if (action.type === SUB) {
-    return previousState.filter((p) => p !== action.index);
-  }
-  return previousState;
-}
+export default reducer;
