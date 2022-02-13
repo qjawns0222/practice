@@ -1,3 +1,4 @@
+import { put, takeEvery } from "@redux-saga/core/effects";
 const DATA = "DATA";
 const GET_USERS = "PRACTICE/user/GET_USERS";
 const GET_USERS_PENDING = "PRACTICE/user/GET_USERS_PENDING";
@@ -37,4 +38,24 @@ export default function reducer(state = { data: [] }, action) {
     return { ...state, data: action.payload };
   }
   return state;
+}
+
+function* SageUser() {
+  const res = yield [
+    { name: "mark1", id: 1 },
+    { name: "mark2", id: 2 },
+    { name: "mark3", id: 3 },
+    { name: "mark4", id: 4 },
+    { name: "mark5", id: 5 },
+  ];
+  yield put(indata(res));
+}
+const SagaStart = "SagaStart";
+export function SagaUserStart() {
+  return {
+    type: SagaStart,
+  };
+}
+export function* UseSaga() {
+  yield takeEvery(SagaStart, SageUser);
 }
